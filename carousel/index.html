@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>KIRILL — Вещи, которые я понял после 30</title>
+<style>
+@font-face {
+  font-family: "Inter Tight";
+  src: url("fonts/InterTight-wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("fonts/Onest-wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --base: #0B0C0F;
+  --cream: #EEE9DF;
+  --white: #FAF9F5;
+  --red: #D9473F;
+  --graphite: #292C33;
+  --muted: #6A6D74;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 10800px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--base);
+}
+
+.canvas {
+  position: relative;
+  width: 10800px;
+  height: 1920px;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--base) 0px,
+    var(--base) 980px,
+    var(--cream) 980px,
+    var(--cream) 3140px,
+    var(--red) 3140px,
+    var(--red) 3172px,
+    var(--graphite) 3172px,
+    var(--graphite) 4280px,
+    var(--cream) 4280px,
+    var(--cream) 7460px,
+    var(--white) 7460px,
+    var(--white) 8560px,
+    var(--cream) 8560px,
+    var(--cream) 10800px
+  );
+}
+
+/* photos live under text, can cross 1080px seams */
+.photo {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  background: #1a1c20;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.r12 { border-radius: 12px; }
+.r20 { border-radius: 20px; }
+.r0 { border-radius: 0; }
+
+/* couple 01 → 02 */
+#p-couple { left: 72px; top: 900px; width: 1540px; height: 940px; }
+#p-couple img { object-position: 48% 28%; }
+
+/* messi 02 → 03 */
+#p-messi { left: 1588px; top: 868px; width: 800px; height: 980px; }
+#p-messi img { object-position: 50% 38%; transform: scale(1.08); transform-origin: 50% 40%; }
+
+/* dog kiss 03, stops before punchline slide */
+#p-kiss { left: 2288px; top: 900px; width: 932px; height: 940px; }
+#p-kiss img { object-position: 46% 42%; }
+
+/* theo face 05 → 06, no leftover in 04 */
+#p-theo { left: 4320px; top: 760px; width: 1160px; height: 1100px; }
+#p-theo img { object-position: 50% 30%; }
+
+/* mountains 06 → 07, peek 08; crop out parking sign */
+#p-mountains { left: 5400px; top: 760px; width: 2280px; height: 1160px; }
+#p-mountains img { object-position: 58% 42%; }
+
+/* resort 08 → 09 */
+#p-resort { left: 7588px; top: 860px; width: 1260px; height: 990px; }
+#p-resort img { object-position: 50% 22%; }
+
+/* skate 09 → 10 */
+#p-skate { left: 8688px; top: 780px; width: 1220px; height: 1140px; }
+#p-skate img { object-position: 48% 62%; }
+
+/* breakfast 10 */
+#p-breakfast { left: 9888px; top: 860px; width: 840px; height: 990px; }
+#p-breakfast img { object-position: 16% 40%; }
+
+/* text columns: never cross seams */
+.slide {
+  position: absolute;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  z-index: 3;
+  box-sizing: border-box;
+  padding: 188px 88px 0;
+  pointer-events: none;
+}
+.slide.s1 { left: 0; }
+.slide.s2 { left: 1080px; padding-top: 220px; }
+.slide.s3 { left: 2160px; padding-top: 220px; }
+.slide.s4 { left: 3240px; }
+.slide.s5 { left: 4320px; padding-top: 220px; }
+.slide.s6 { left: 5400px; padding-top: 220px; }
+.slide.s7 { left: 6480px; padding-top: 220px; }
+.slide.s8 { left: 7560px; padding-top: 220px; }
+.slide.s9 { left: 8640px; padding-top: 220px; }
+.slide.s10 { left: 9720px; padding-top: 220px; }
+
+.micro {
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.dark .micro { color: #9A9892; }
+.light .micro { color: #6A6D74; }
+.inverse .micro { color: #B7B4AE; }
+
+.title {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--cream);
+  margin: 0 0 54px;
+}
+
+.num {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  margin: 0 0 16px;
+}
+
+.h {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 1.04;
+  letter-spacing: -0.038em;
+  margin: 0 0 18px;
+}
+.dark .h, .inverse .h { color: var(--white); }
+.light .h { color: var(--base); }
+
+.s {
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  max-width: 860px;
+}
+.dark .s { color: #C8C5BE; }
+.light .s { color: #3A3D44; }
+.inverse .s { color: #C4C1BA; }
+
+.accent { color: var(--red); }
+
+.h.big {
+  font-size: 62px;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.h.mid {
+  font-size: 42px;
+}
+
+.shrug {
+  font-family: "Onest", sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  margin-top: 14px;
+  color: #A8A59E;
+}
+
+/* punchline slide — type only, vertically settled */
+.slide.s4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 280px;
+}
+.slide.s4 .h.big { font-size: 72px; max-width: 900px; }
+
+.title .accent { color: var(--red); }
+
+/* debug seams: add ?debug via class on canvas */
+.canvas.debug::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 1078px,
+    rgba(217, 71, 63, 0.7) 1078px,
+    rgba(217, 71, 63, 0.7) 1080px
+  );
+}
+</style>
+</head>
+<body>
+<div class="canvas" id="canvas">
+
+  <div class="photo r20" id="p-couple"><img src="photos/06-couple-bar.jpg" alt=""></div>
+  <div class="photo r20" id="p-messi"><img src="photos/05-messi.png" alt=""></div>
+  <div class="photo r20" id="p-kiss"><img src="photos/03-theo-kiss.jpg" alt=""></div>
+  <div class="photo r20" id="p-theo"><img src="photos/01-theo-close.jpg" alt=""></div>
+  <div class="photo r12" id="p-mountains"><img src="photos/08-mountains-crop.jpg" alt=""></div>
+  <div class="photo r20" id="p-resort"><img src="photos/04-resort.jpg" alt=""></div>
+  <div class="photo r20" id="p-skate"><img src="photos/07-skate.jpg" alt=""></div>
+  <div class="photo r20" id="p-breakfast"><img src="photos/02-breakfast.jpg" alt=""></div>
+
+  <section class="slide s1 dark">
+    <div class="micro">KIRILL / 30</div>
+    <h1 class="title">Вещи, которые<br>я понял<br><span class="accent">после 30</span></h1>
+    <div class="num">01/</div>
+    <p class="h">Никто не верит,<br>что тебе 30</p>
+    <p class="s">Спасибо родителям за гены</p>
+  </section>
+
+  <section class="slide s2 light">
+    <div class="num">02/</div>
+    <p class="h">Теперь самому<br>приходится<br>придумывать, чем<br>себя развлекать</p>
+    <p class="s">В детстве день как-то сам<br>был насыщенным.<br>Теперь за это отвечаешь ты.</p>
+  </section>
+
+  <section class="slide s3 light">
+    <div class="num">03/</div>
+    <p class="h">Обеспечивать<br>свою семью<br>очень приятно</p>
+    <p class="s">И, к моему удивлению,<br>оказалось не так сложно,<br>как я почему-то представлял.</p>
+  </section>
+
+  <section class="slide s4 inverse">
+    <div class="num">04/</div>
+    <p class="h big">Кешбэк<br>в приложениях<br>банков —<br><span class="accent">имба.</span></p>
+  </section>
+
+  <section class="slide s5 light">
+    <div class="num">05/</div>
+    <p class="h">Начинаешь понимать<br>шутки и поведение<br>бати</p>
+    <p class="s">Сидишь такой:<br>«Аааа. Вот оно что».</p>
+  </section>
+
+  <section class="slide s6 light">
+    <div class="num">06/</div>
+    <p class="h mid">Иногда хочется<br>всё бросить,<br>уехать жить<br>на природу<br>и купить дачу.</p>
+  </section>
+
+  <section class="slide s7 light">
+    <div class="num">07/</div>
+    <p class="h">Я всё ещё не знаю,<br>кем хочу стать,<br>когда вырасту.</p>
+    <p class="shrug">Да и пофиг)</p>
+  </section>
+
+  <section class="slide s8 light">
+    <div class="num">08/</div>
+    <p class="h">Загорать на солнце<br>не прикольно.</p>
+    <p class="s">А вот плавать в море <span class="accent">кайф.</span></p>
+  </section>
+
+  <section class="slide s9 light">
+    <div class="num">09/</div>
+    <p class="h mid">Подвижность<br>и мобильность тела<br>оказывается важнее<br>количества мышц</p>
+    <p class="s">и того, как ты выглядишь<br>в зеркале.</p>
+  </section>
+
+  <section class="slide s10 light">
+    <div class="num">10/</div>
+    <p class="h">До сих пор<br>не понимаю,</p>
+    <p class="s">почему вся самая вкусная<br>еда и напитки <span class="accent">вредные?</span></p>
+  </section>
+
+</div>
+</body>
+</html>
